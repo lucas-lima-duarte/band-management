@@ -26,6 +26,7 @@
     "typescript": "^5.7.3"
   },
   "dependencies": {
+    "@typegoose/typegoose": "^12.11.0",
     "@types/amqplib": "^0.10.6",
     "@types/express": "^5.0.0",
     "@types/jsonwebtoken": "^9.0.9",

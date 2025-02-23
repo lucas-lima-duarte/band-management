@@ -1,5 +1,5 @@
 import { Request } from "express";
-import { IUser, UserRole } from "./user.types";
+import { IUser } from "./user.types";
 
 export interface IAuthRequest extends Request {
     user?: IUser
@@ -8,7 +8,6 @@ export interface IAuthRequest extends Request {
 export interface IJWTPayload {
     userId: string;
     email: string;
-    role: UserRole;
     bandId?: string;
 }
 
