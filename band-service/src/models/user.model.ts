@@ -1,5 +1,11 @@
 import { getModelForClass, prop } from "@typegoose/typegoose";
-import { Instruments } from "../types/instruments";
+
+enum Instruments {
+    GUITAR = "guitar",
+    DRUMS = "drums",
+    BASS = "bass",
+    VOCALS = "vocals"
+}
 
 export class User {
 

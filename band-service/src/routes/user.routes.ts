@@ -8,9 +8,9 @@ UserRouter.post('/', async (req: Request, res: Response) => {
     res.status(201).json(user)
 })
 
-UserRouter.get('/', async (req: Request, res: Response) => {
-    const users = await UserModel.find()
-    res.status(201).json(users)
+UserRouter.get('/:id', async (req: Request, res: Response) => {
+    const user = await UserModel.findOne({ _id: req.params.id })
+    res.status(201).json(user)
 })
 
 export default UserRouter

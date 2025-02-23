@@ -1,7 +1,7 @@
 import { prop, getModelForClass, Ref } from "@typegoose/typegoose";
 import { User } from "./user.model";
 
-class Band {
+export class Band {
     @prop({ required: true })
     public name!: string;
 

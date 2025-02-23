@@ -13,4 +13,10 @@ BandRouter.get('/', async (req: Request, res: Response) => {
     res.status(201).json(users)
 })
 
+BandRouter.post('/:id/invite', async (req: Request, res: Response) => {
+    const bandId = req.params.id
+    const { user } = req.body
+    
+})
+
 export default BandRouter
