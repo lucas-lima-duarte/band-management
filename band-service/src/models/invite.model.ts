@@ -1,8 +1,8 @@
-import { prop, Ref } from "@typegoose/typegoose";
+import { getModelForClass, prop, Ref } from "@typegoose/typegoose";
 import { User } from "./user.model";
 import { Band } from "./band.model";
 
-enum Status {
+export enum Status {
     PENDING = 'pending',
     ACCEPTED = 'accepted',
     REJECTED = 'rejected'
@@ -18,3 +18,5 @@ export class Invite {
     @prop({ enum: Status, default: Status.PENDING })
     status!: Status
 }
+
+export const InviteModel = getModelForClass(Invite)

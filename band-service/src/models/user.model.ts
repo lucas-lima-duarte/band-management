@@ -18,7 +18,7 @@ export class User {
     @prop({ required: true })
     public experience!: {
         years: number;
-        level: 'iniciante' | 'intermediario' | 'avancado';
+        level: 'beginner' | 'medium' | 'advanced';
     };
 
     @prop({ required: true })

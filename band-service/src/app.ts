@@ -4,11 +4,13 @@ import helmet from 'helmet'
 
 import UserRouter from "./routes/user.routes";
 import BandRouter from "./routes/band.routes";
+import InviteRouter from "./routes/invite.routes";
 
 const app: Express = express();
 
 app.use('/api/users', UserRouter)
 app.use('/api/bands', BandRouter)
+app.use('/api/invites', InviteRouter)
 
 app.use(express.json())
 app.use(cors())
