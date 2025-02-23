@@ -1,59 +1,29 @@
 version: '3.8'
 
 services:
-  mongodb:
+  mongo:
     image: mongo:latest
-    container_name: band-mongodb
-    environment:
-      MONGO_INITDB_ROOT_USERNAME: root
-      MONGO_INITDB_ROOT_PASSWORD: rootpassword
     ports:
       - "27017:27017"
     volumes:
-      - mongodb_data:/data/db
-    networks:
-      - band-network
+      - mongo-data:/data/db
+
+  redis:
+    image: redis:latest
+    ports:
+      - "6379:6379"
+    volumes:
+      - redis-data:/data
 
   rabbitmq:
     image: rabbitmq:3-management
-    container_name: band-rabbitmq
+    ports:
+      - "5672:5672"  # Porta AMQP
+      - "15672:15672" # Porta de administração
     environment:
       RABBITMQ_DEFAULT_USER: admin
-      RABBITMQ_DEFAULT_PASS: adminpassword
-    ports:
-      - "5672:5672"   # AMQP protocol
-      - "15672:15672" # Management interface
-    volumes:
-      - rabbitmq_data:/var/lib/rabbitmq
-    networks:
-      - band-network
-
-  auth-service:
-    build:
-      context: ./services/auth-service
-      dockerfile: Dockerfile
-    container_name: band-auth-service
-    environment:
-      - NODE_ENV=development
-      - MONGODB_URI=mongodb://root:rootpassword@mongodb:27017/auth?authSource=admin
-      - RABBITMQ_URI=amqp://admin:adminpassword@rabbitmq:5672
-      - JWT_SECRET=your_jwt_secret_key
-      - PORT=3000
-    ports:
-      - "3000:3000"
-    depends_on:
-      - mongodb
-      - rabbitmq
-    volumes:
-      - ./services/auth-service:/usr/src/app
-      - /usr/src/app/node_modules
-    networks:
-      - band-network
+      RABBITMQ_DEFAULT_PASS: password
 
 volumes:
-  mongodb_data:
-  rabbitmq_data:
-
-networks:
-  band-network:
-    driver: bridge
+  mongo-data:
+  redis-data:
