@@ -3,19 +3,11 @@ import { BandModel } from "../models/band.model";
 import { InviteModel } from "../models/invite.model";
 import { BandController } from "../controllers/band.controller";
 
-const BandRouter = Router()
+const bandRouter = Router()
+const controller = new BandController()
 
-BandRouter.post('/', BandController.create)
+bandRouter.post('/', controller.create)
+bandRouter.get('/', controller.get)
+bandRouter.post('/:id/invite', controller.invite)
 
-BandRouter.get('/', BandController.get)
-
-BandRouter.post('/:id/invite', async (req: Request, res: Response) => {
-    const bandId = req.params.id
-    const { user } = req.body
-
-    const invite = InviteModel.create({ bandId, user })
-    res.status(201).json(invite)
-
-})
-
-export default BandRouter
+export default bandRouter

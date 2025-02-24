@@ -10,7 +10,7 @@ export enum Status {
 
 export class Invite {
     @prop({})
-    userId!: Ref<User>
+    user!: Ref<User>
 
     @prop({})
     bandId!: Ref<Band>
