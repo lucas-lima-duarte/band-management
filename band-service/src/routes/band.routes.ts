@@ -1,18 +1,13 @@
 import { Router, Request, Response } from "express";
 import { BandModel } from "../models/band.model";
 import { InviteModel } from "../models/invite.model";
+import { BandController } from "../controllers/band.controller";
 
 const BandRouter = Router()
 
-BandRouter.post('/', async (req: Request, res: Response) => {
-    const user = await BandModel.create(req.body)
-    res.status(201).json(user)
-})
+BandRouter.post('/', BandController.create)
 
-BandRouter.get('/', async (req: Request, res: Response) => {
-    const users = await BandModel.find()
-    res.status(201).json(users)
-})
+BandRouter.get('/', BandController.get)
 
 BandRouter.post('/:id/invite', async (req: Request, res: Response) => {
     const bandId = req.params.id

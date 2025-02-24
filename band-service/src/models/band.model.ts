@@ -5,7 +5,7 @@ export class Band {
     @prop({ required: true })
     public name!: string;
 
-    @prop({ required: true })
+    @prop({ required: true, ref: User })
     public leader!: Ref<User>;
 
     @prop({ default: [] })

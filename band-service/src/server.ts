@@ -1,5 +1,8 @@
 import { mongoose } from '@typegoose/typegoose';
 import app from './app'
+import { config } from 'dotenv';
+
+config();
 
 const PORT = process.env.PORT;
 const MONGO_URI = process.env.MONGO_URI;

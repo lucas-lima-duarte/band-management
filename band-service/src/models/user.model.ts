@@ -8,27 +8,32 @@ enum Instruments {
 }
 
 export class User {
+    @prop({ required: true })
+    name!: string;
+
+    @prop({ required: true, unique: true })
+    email!: string
 
     @prop({ required: true })
-    public name!: string;
+    password!: string
 
-    @prop({ required: true })
-    public instruments!: Instruments[];
+    @prop({ type: () => [String], enum: Instruments })
+    instruments?: Instruments[];
 
-    @prop({ required: true })
-    public experience!: {
+    @prop({})
+    experience?: {
         years: number;
         level: 'beginner' | 'medium' | 'advanced';
     };
 
-    @prop({ required: true })
-    public influences?: string[];
+    @prop({})
+    influences?: string[];
 
-    @prop({ required: true })
-    public extraSkills?: string[];
+    @prop({})
+    extraSkills?: string[];
 
-    @prop({ required: true })
-    public occupation?: string;
+    @prop({})
+    occupation?: string;
 
 }
 
